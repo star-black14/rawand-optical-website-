@@ -1,373 +1,738 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rawand Optical</title>
+    <title>Rawand Optical</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #07111f;
-    color: white;
-}
 
-/* HEADER */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(7,17,31,0.95);
-    border-bottom: 1px solid #1d344d;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        body {
+            background: #06111b;
+            color: white;
+        }
 
-.logo {
-    font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
+        /* ================= HEADER ================= */
 
-.logo span {
-    color: #39a9ff;
-}
+        header {
+            height: 80px;
+            background: #07121d;
+            border-bottom: 1px solid #183044;
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    font-size: 16px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-nav a:hover {
-    color: #39a9ff;
-}
+            padding: 0 6%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* HERO */
-.hero {
-    min-height: 88vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 60px 20px;
-    background:
-        radial-gradient(circle at center, #123456 0%, #07111f 55%);
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.hero-content {
-    max-width: 850px;
-}
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
 
-.badge {
-    display: inline-block;
-    padding: 8px 18px;
-    border: 1px solid #2b7db5;
-    border-radius: 30px;
-    color: #64c2ff;
-    margin-bottom: 25px;
-    font-size: 14px;
-}
+        .logo-text {
+            letter-spacing: 6px;
+            font-size: 21px;
+            font-weight: 500;
+        }
 
-.hero h1 {
-    font-size: clamp(48px, 9vw, 90px);
-    line-height: 1;
-    margin-bottom: 25px;
-}
+        .logo-text span {
+            display: block;
+            color: #1685ff;
+            font-size: 10px;
+            letter-spacing: 6px;
+            margin-top: 4px;
+        }
 
-.hero h1 span {
-    color: #39a9ff;
-}
+        nav {
+            display: flex;
+            gap: 38px;
+        }
 
-.hero p {
-    color: #aebdce;
-    font-size: 20px;
-    line-height: 1.6;
-    max-width: 650px;
-    margin: auto;
-}
+        nav a {
+            color: #dce5ef;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-.buttons {
-    margin-top: 35px;
-}
+        nav a:hover,
+        nav a.active {
+            color: #1685ff;
+        }
 
-.button {
-    display: inline-block;
-    padding: 15px 30px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 7px;
-}
+        .header-icons {
+            display: flex;
+            gap: 22px;
+            font-size: 21px;
+        }
 
-.primary {
-    background: #168cff;
-    color: white;
-}
+        /* ================= HERO ================= */
 
-.secondary {
-    border: 1px solid #42627d;
-    color: white;
-}
+        .hero {
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
 
-/* SECTIONS */
-section {
-    padding: 90px 7%;
-}
+            display: flex;
+            align-items: center;
+        }
 
-.section-title {
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 15px;
-}
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
 
-.section-text {
-    text-align: center;
-    color: #9eafc0;
-    max-width: 650px;
-    margin: auto;
-    line-height: 1.7;
-}
+            width: 62%;
+            height: 100%;
 
-/* SERVICES */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    margin-top: 45px;
-}
+            object-fit: cover;
+            object-position: center;
 
-.card {
-    background: #0d1b2b;
-    border: 1px solid #1d344d;
-    border-radius: 18px;
-    padding: 35px 25px;
-    text-align: center;
-}
+            z-index: 0;
+        }
 
-.icon {
-    font-size: 42px;
-    margin-bottom: 20px;
-}
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
 
-.card h3 {
-    margin-bottom: 12px;
-    font-size: 22px;
-}
+            background:
+                linear-gradient(
+                    90deg,
+                    #06111b 0%,
+                    #06111b 30%,
+                    rgba(6,17,27,0.92) 43%,
+                    rgba(6,17,27,0.25) 70%,
+                    rgba(6,17,27,0.05) 100%
+                );
 
-.card p {
-    color: #94a8bb;
-    line-height: 1.6;
-}
+            z-index: 1;
+        }
 
-/* CONTACT */
-.contact {
-    background: #0a1726;
-    text-align: center;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
 
-.contact-box {
-    max-width: 700px;
-    margin: 35px auto 0;
-    padding: 35px;
-    border: 1px solid #1d344d;
-    border-radius: 20px;
-    background: #0d1b2b;
-}
+            width: 50%;
+            padding-left: 6%;
+        }
 
-.contact-box p {
-    color: #a9b9c9;
-    margin: 12px 0;
-}
+        .small-title {
+            color: #b9cce0;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid #1d344d;
-    color: #71869a;
-}
+        .hero h1 {
+            font-size: clamp(45px, 5vw, 70px);
+            line-height: 1.02;
+            margin-bottom: 22px;
+        }
 
-/* PHONE */
-@media (max-width: 700px) {
+        .hero h1 span {
+            color: #1685ff;
+        }
 
-    header {
-        padding: 16px 20px;
-    }
+        .hero p {
+            color: #c3cfdb;
+            line-height: 1.7;
+            max-width: 500px;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
 
-    .logo {
-        font-size: 21px;
-    }
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
 
-    nav a {
-        margin-left: 10px;
-        font-size: 14px;
-    }
+        .btn {
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
 
-    .hero {
-        min-height: 80vh;
-    }
+        .btn-primary {
+            background: #1685ff;
+            color: white;
+        }
 
-    .hero h1 {
-        font-size: 55px;
-    }
+        .btn-primary:hover {
+            background: #0568d4;
+        }
 
-    .hero p {
-        font-size: 17px;
-    }
+        .btn-outline {
+            border: 1px solid #60758a;
+            color: white;
+        }
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
+        .btn-outline:hover {
+            border-color: #1685ff;
+            color: #1685ff;
+        }
 
-    section {
-        padding: 65px 20px;
-    }
-}
-</style>
+        /* ================= SERVICES ================= */
+
+        .section {
+            padding: 65px 6%;
+            border-bottom: 1px solid #152b3d;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #9eafc0;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            border: 1px solid #19405f;
+            border-radius: 8px;
+            padding: 30px;
+            background: rgba(5, 17, 28, 0.8);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #1685ff;
+        }
+
+        .service-icon {
+            font-size: 35px;
+            color: #1685ff;
+            margin-bottom: 22px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .service-card p {
+            color: #aebdcc;
+            line-height: 1.7;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            min-height: 400px;
+        }
+
+        .about-content {
+            padding: 70px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-content .small-title {
+            margin-bottom: 18px;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .about-content h2 span {
+            color: #1685ff;
+        }
+
+        .about-content p {
+            color: #aebdcc;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        /* ================= BRANDS ================= */
+
+        .brands {
+            min-height: 170px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 35px 7%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #071521,
+                    #0b1c2b
+                );
+        }
+
+        .brand-text h3 {
+            font-size: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+        }
+
+        .brand-text p {
+            color: #9eafc0;
+        }
+
+        .brand-names {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .brand-names span {
+            color: #dce5ef;
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            min-height: 280px;
+        }
+
+        .contact-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-content {
+            padding: 50px 7%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-content h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .contact-content p {
+            color: #9eafc0;
+            margin-bottom: 25px;
+        }
+
+        .contact-items {
+            display: flex;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: #cbd7e2;
+            font-size: 14px;
+        }
+
+        .contact-item span {
+            color: #1685ff;
+            margin-right: 8px;
+        }
+
+        .whatsapp {
+            margin-top: 25px;
+            display: inline-block;
+            width: fit-content;
+            background: #1685ff;
+            padding: 13px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            height: 75px;
+            border-top: 1px solid #183044;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #8d9baa;
+            font-size: 12px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero-image {
+                width: 100%;
+                opacity: 0.65;
+            }
+
+            .hero::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(6,17,27,0.55),
+                        #06111b 90%
+                    );
+            }
+
+            .hero-content {
+                width: 100%;
+                padding: 50px 7%;
+                align-self: flex-end;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                min-height: 300px;
+            }
+
+            .brands {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .brand-names {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-image {
+                min-height: 250px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">RAWAND <span>OPTICAL</span></div>
+    <!-- ================= HEADER ================= -->
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <header>
 
-<main>
+        <div class="logo">
 
-<section class="hero" id="home">
+            <!-- YOUR R LOGO -->
+            <img src="assets/r-logo.png" alt="Rawand Optical Logo">
 
-    <div class="hero-content">
+            <div class="logo-text">
+                RAWAND
+                <span>OPTICAL</span>
+            </div>
 
-        <div class="badge">PREMIUM EYEWEAR & OPTICAL CARE</div>
+        </div>
 
-        <h1>
-            See the world<br>
-            <span>clearly.</span>
-        </h1>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#brands">Brands</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-        <p>
-            Discover premium eyewear, advanced lenses,
-            and professional optical care at Rawand Optical.
-        </p>
+        <div class="header-icons">
+            <span>⌕</span>
+            <span>◎</span>
+        </div>
 
-        <div class="buttons">
-            <a href="#services" class="button primary">
-                Explore
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <!-- GIRL FROM YOUR SECOND IMAGE -->
+        <img
+            src="assets/girl.jpg"
+            class="hero-image"
+            alt="Rawand Optical Eyewear"
+        >
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                RAWAND OPTICAL • SINCE 1993
+            </div>
+
+            <h1>
+                See the world<br>
+                <span>clearly.</span>
+            </h1>
+
+            <p>
+                Discover premium eyewear, advanced lenses,
+                and professional optical care at Rawand Optical.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#services" class="btn btn-primary">
+                    Explore →
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    Contact Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section class="section" id="services">
+
+        <div class="section-title">
+
+            <h2>Our Services</h2>
+
+            <p>
+                Everything you need for better vision and a better look.
+            </p>
+
+        </div>
+
+        <div class="services">
+
+            <div class="service-card">
+
+                <div class="service-icon">◯</div>
+
+                <h3>Eyewear</h3>
+
+                <p>
+                    Modern and premium frames designed
+                    for style, comfort and everyday use.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">◉</div>
+
+                <h3>Premium Lenses</h3>
+
+                <p>
+                    High-quality lenses designed to provide
+                    clear and comfortable vision.
+                </p>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">✦</div>
+
+                <h3>Optical Care</h3>
+
+                <p>
+                    Professional optical service with
+                    attention to detail.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section class="about" id="about">
+
+        <div class="about-content">
+
+            <div class="small-title">
+                ABOUT RAWAND OPTICAL
+            </div>
+
+            <h2>
+                Your Vision,<br>
+                <span>Our Priority.</span>
+            </h2>
+
+            <p>
+                Rawand Optical combines modern eyewear,
+                quality lenses and professional optical
+                service to help you see better and look your best.
+            </p>
+
+            <a href="#contact" class="btn btn-primary">
+                Learn More →
             </a>
 
-            <a href="#contact" class="button secondary">
-                Contact Us
+        </div>
+
+        <img
+            src="assets/optical-shop.jpg"
+            class="about-image"
+            alt="Rawand Optical Shop"
+        >
+
+    </section>
+
+
+    <!-- ================= BRANDS ================= -->
+
+    <section class="brands" id="brands">
+
+        <div class="brand-text">
+
+            <h3>TRUSTED BRANDS</h3>
+
+            <p>
+                World leading brands for a clearer tomorrow.
+            </p>
+
+        </div>
+
+        <div class="brand-names">
+
+            <span>ZEISS</span>
+            <span>HOYA</span>
+            <span>Transitions</span>
+            <span>Ray-Ban</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONTACT ================= -->
+
+    <section class="contact" id="contact">
+
+        <img
+            src="assets/optical-store.jpg"
+            class="contact-image"
+            alt="Rawand Optical"
+        >
+
+        <div class="contact-content">
+
+            <h2>Contact Us</h2>
+
+            <p>
+                Visit Rawand Optical or contact us for more information.
+            </p>
+
+            <div class="contact-items">
+
+                <div class="contact-item">
+                    <span>⌖</span>
+                    Rawand Optical
+                </div>
+
+                <div class="contact-item">
+                    <span>☎</span>
+                    Contact us
+                </div>
+
+                <div class="contact-item">
+                    <span>◎</span>
+                    Follow us on social media
+                </div>
+
+            </div>
+
+            <a href="#" class="whatsapp">
+                ◉ Chat on WhatsApp
             </a>
+
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<section id="services">
+    <!-- ================= FOOTER ================= -->
 
-    <h2 class="section-title">Our Services</h2>
+    <footer>
+        © 2026 Rawand Optical. All rights reserved.
+    </footer>
 
-    <p class="section-text">
-        Everything you need for better vision and a better look.
-    </p>
-
-    <div class="cards">
-
-        <div class="card">
-            <div class="icon">👓</div>
-            <h3>Eyewear</h3>
-            <p>
-                Modern and premium frames designed
-                for style, comfort and everyday use.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="icon">🔬</div>
-            <h3>Premium Lenses</h3>
-            <p>
-                High-quality lenses designed to provide
-                clear and comfortable vision.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="icon">✨</div>
-            <h3>Optical Care</h3>
-            <p>
-                Professional optical service with
-                attention to detail.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section id="about">
-
-    <h2 class="section-title">About Rawand Optical</h2>
-
-    <p class="section-text">
-        Rawand Optical combines modern eyewear,
-        quality lenses and professional optical service
-        to help you see better and look your best.
-    </p>
-
-</section>
-
-
-<section class="contact" id="contact">
-
-    <h2 class="section-title">Contact Us</h2>
-
-    <p class="section-text">
-        Visit Rawand Optical or contact us for more information.
-    </p>
-
-    <div class="contact-box">
-
-        <p>📍 Rawand Optical</p>
-
-        <p>📞 Contact us</p>
-
-        <p>📱 Follow us on social media</p>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<footer>
-    © 2026 Rawand Optical. All rights reserved.
-</footer>
 
 </body>
 </html>
